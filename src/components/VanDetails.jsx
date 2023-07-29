@@ -2,17 +2,17 @@ import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 
 export default function VanDetails() {
-  const [van, setVan] = useState({});
+  const [van, setVan] = useState(null);
   const params = useParams();
 
   useEffect(() => {
     const fetchVanData = async () => {
       try {
-        const response = await fetch(`/api/vans/${params.id}`);
-        if (!response.ok) {
-          throw new Error(response.status);
+        const res = await fetch(`/api/vans/${params.id}`);
+        if (!res.ok) {
+          throw new Error(res.status);
         } else {
-          const data = await response.json();
+          const data = await res.json();
           setVan(data.vans);
         }
       } catch (error) {
