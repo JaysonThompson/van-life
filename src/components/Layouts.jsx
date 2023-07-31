@@ -1,3 +1,12 @@
+import Header from "./Header";
+
+import { Outlet } from "react-router-dom";
+
 export default function Layouts() {
-  return <div>Layouts</div>;
+  return (
+    <div>
+      <Header />
+      <Outlet />
+    </div>
+  );
 }
