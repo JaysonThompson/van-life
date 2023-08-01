@@ -7,8 +7,9 @@ export default function Nav() {
         #VanLife
       </Link>
       <nav>
-        <Link to="/about">About</Link>
-        <Link to="/vans">Vans</Link>
+        <Link to="host/dashboard">Hosts</Link>
+        <Link to="about">About</Link>
+        <Link to="vans">Vans</Link>
       </nav>
     </header>
   );
