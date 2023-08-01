@@ -19,8 +19,10 @@ body {
   scrollbar-width: none;
 }
 
-main {
-  margin-bottom: 84px;
+.site-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 header {
@@ -28,18 +30,6 @@ header {
   display: flex;
   align-items: center;
   padding-block: 10px;
-}
-
-footer {
-  background-color: #161616;
-  color: #aaaaaa;
-  height: 74px;
-  display: flex;
-  flex-shrink: 0;
-  justify-content: center;
-  align-items: center;
-  margin-top: auto;
-  font-weight: 500;
 }
 
 header .site-logo {
@@ -62,6 +52,22 @@ header a:hover {
   text-decoration: underline;
 }
 
+main {
+  margin-bottom: 84px;
+}
+
+footer {
+  background-color: #161616;
+  color: #aaaaaa;
+  height: 74px;
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  margin-top: auto;
+  font-weight: 500;
+}
+
 .link-button {
   display: inline-block;
   text-align: center;
@@ -75,6 +81,18 @@ header a:hover {
   transition: transform 0.1s ease-in-out;
 }
 
+.back-button {
+  display: block;
+  color: black;
+  text-decoration: none;
+  margin-top: 60px;
+  margin-left: 26px;
+}
+
+.back-button span:hover {
+  text-decoration: underline;
+}
+
 .link-button:hover {
   transform: translate(1px, 1px);
 }
@@ -82,7 +100,7 @@ header a:hover {
 /*** HOME PAGE ***/
 .home-container {
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.46), rgba(0, 0, 0, 0.46)),
-    url("../assets/images/home-hero.png") no-repeat center center;
+    url("./assets/images/home-hero.png") no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -254,8 +272,8 @@ i[class*="van-type-"] {
   text-decoration: none;
 }
 
-/* .van-detail-container .back-button:visited {
-} */
+.van-detail-container .back-button:visited {
+}
 
 .van-detail-container .back-button span {
   text-decoration: underline;
@@ -296,8 +314,6 @@ i[class*="van-type-"] {
   color: white;
   font-size: 1.125rem;
 }
-
-/* HOST PAGES */
 
 .host-nav {
   display: flex;
@@ -354,10 +370,31 @@ i[class*="van-type-"] {
   margin-block: 10px;
 }
 
-/* MEDIA QUERIES */
-@media (min-width: 1024px) {
-  body {
-    margin: 0 auto;
-    max-width: 85%;
-  }
+.host-van-detail-layout-container {
+  background-color: white;
+  padding: 24px;
+  margin: 30px 26px;
+}
+
+.host-van-detail {
+  display: flex;
+  align-items: center;
+}
+
+.host-van-detail > img {
+  height: 160px;
+  border-radius: 5px;
+  margin-right: 20px;
+}
+
+.host-van-detail-info-text > h3 {
+  margin-top: 24px;
+  margin-bottom: 5px;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.host-van-detail-info-text > h4 {
+  font-size: 20px;
+  margin-block: 0;
 }
