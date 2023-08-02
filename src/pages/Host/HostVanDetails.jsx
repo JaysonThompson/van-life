@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Outlet, Link } from "react-router-dom";
+
+import HostDetailsLayout from "./HostDetailsLayout";
 
 export default function HostVanDetails() {
   const [van, setVan] = useState([]);
@@ -25,6 +27,9 @@ export default function HostVanDetails() {
 
   return (
     <section>
+      <Link to=".." relative="path" className="back-button">
+        &larr; Back to all vans
+      </Link>
       <div className="host-van-detail-layout-container">
         <div className="host-van-detail">
           <img src={imageUrl} />
@@ -34,6 +39,8 @@ export default function HostVanDetails() {
             <h4>${price}/day</h4>
           </div>
         </div>
+        <HostDetailsLayout />
+        <Outlet />
       </div>
     </section>
   );
