@@ -1,14 +1,13 @@
 import { NavLink } from "react-router-dom";
 
 export default function HostDetailsLayout() {
-  //const { id } = useParams();
   const active = {
     fontWeight: "bold",
     textDecoration: "underline",
     color: "#161616",
   };
   return (
-    <nav>
+    <nav className="host-van-detail-nav">
       <NavLink to="." end style={({ isActive }) => (isActive ? active : null)}>
         Details
       </NavLink>
