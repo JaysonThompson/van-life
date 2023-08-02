@@ -1,38 +1,23 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 
 export default function HostDetails() {
-  const [details, setDetails] = useState([]);
-  const { id } = useParams();
-  const { name, type, description } = details;
-  useEffect(() => {
-    async function fetchVanDetails() {
-      try {
-        const response = await fetch(`/api/host/vans/${id}`);
-        if (!response.ok) {
-          throw new Error(response.status);
-        } else {
-          const data = await response.json();
-          setDetails(data.vans);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    fetchVanDetails();
-  }, [id]);
+  const [van] = useOutletContext();
+  const { name, type, description } = van;
 
   return (
-    <div>
-      <p>
-        <span>Name:</span> {name}
-      </p>
-      <p>
-        <span>Category:</span> {type}
-      </p>
-      <p>
-        <span>Description:</span> {description}
-      </p>
-    </div>
+    <section className="host-van-detail-info">
+      <h4>
+        Name: <span>{name}</span>
+      </h4>
+      <h4>
+        Category: <span>{type}</span>
+      </h4>
+      <h4>
+        Description: <span>{description}</span>
+      </h4>
+      <h4>
+        Visibility: <span>Public</span>
+      </h4>
+    </section>
   );
 }

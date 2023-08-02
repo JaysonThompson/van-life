@@ -40,7 +40,7 @@ export default function HostVanDetails() {
           </div>
         </div>
         <HostDetailsLayout />
-        <Outlet />
+        <Outlet context={[van]} />
       </div>
     </section>
   );
