@@ -21,7 +21,7 @@ export default function HostVans() {
   }, []);
 
   const hostVanElements = vans.map(({ id, title, imageUrl, price }) => (
-    <Link key={id} to={`./${id}`} className="host-van-link-wrapper">
+    <Link key={id} to={id} className="host-van-link-wrapper">
       <div className="host-van-single">
         <img src={imageUrl} alt={title} />
         <div className="host-van-info">
