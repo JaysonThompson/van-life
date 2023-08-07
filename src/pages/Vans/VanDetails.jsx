@@ -5,22 +5,29 @@ import { getVans } from "../../api";
 
 export default function VanDetails() {
   const [van, setVan] = useState([]);
-  const params = useParams();
+  const [loading, setLoading] = useState(false);
+  const { id } = useParams();
   const location = useLocation();
 
   useEffect(() => {
     async function loadVan() {
+      setLoading(true);
       const data = await getVans();
       for (let i = 0; i < data.length; i++) {
-        if (params.id === data[i].id) {
+        if (id === data[i].id) {
           setVan(data[i]);
+          setLoading(false);
         }
       }
     }
     loadVan();
-  }, [params.id]);
+  }, [id]);
 
   const search = location.state?.search || "";
+
+  if (loading) {
+    return <h1>Loading...</h1>;
+  }
 
   return (
     <div className="van-detail-container">
