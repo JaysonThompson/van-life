@@ -11,6 +11,7 @@ export default function HostVans() {
   useEffect(() => {
     async function loadVans() {
       setLoading(true);
+      // eslint-disable-next-line no-unused-vars
       const data = await getHostVans()
         .then((data) => {
           setVans(data);
