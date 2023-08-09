@@ -1,23 +1,25 @@
 import { useState, useEffect } from "react";
 import { useParams, Link, useLocation } from "react-router-dom";
 
-import { getVans } from "../../api/getVans";
+import { getVan } from "../../../api";
 
 export default function VanDetails() {
   const [van, setVan] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const { id } = useParams();
   const location = useLocation();
 
   useEffect(() => {
     async function loadVan() {
       setLoading(true);
-      const data = await getVans();
-      for (let i = 0; i < data.length; i++) {
-        if (id === data[i].id) {
-          setVan(data[i]);
-          setLoading(false);
-        }
+      try {
+        const data = await getVan(id);
+        setVan(data);
+      } catch (err) {
+        setError(err);
+      } finally {
+        setLoading(false);
       }
     }
     loadVan();
@@ -28,7 +30,9 @@ export default function VanDetails() {
   if (loading) {
     return <h1>Loading...</h1>;
   }
-
+  if (error) {
+    return <h1>There was an error: {error.message}</h1>;
+  }
   return (
     <div className="van-detail-container">
       <Link to={`..${search}`} relative="path">

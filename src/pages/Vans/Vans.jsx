@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 
-import { getVans } from "../../api/getVans";
+import { getVans } from "../../../api";
 
 export default function Vans() {
   const [vans, setVans] = useState([]);

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { BsStarFill } from "react-icons/bs";
-import { getHostVans } from "../../api/getHostVans";
+import { getHostVans } from "../../../api";
 
 export default function Dashboard() {
   const [vans, setVans] = useState([]);

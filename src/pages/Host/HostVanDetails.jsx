@@ -2,27 +2,33 @@ import { useState, useEffect } from "react";
 import { useParams, Outlet, Link } from "react-router-dom";
 
 import HostDetailsLayout from "./HostDetailsLayout";
-import { getVans } from "../../api/getVans";
+import { getVan } from "../../../api";
 
 export default function HostVanDetails() {
   const [van, setVan] = useState([]);
   const { id } = useParams();
   const { imageUrl, name, type, price } = van;
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     async function loadVan() {
       setLoading(true);
-      const data = await getVans();
-      for (let i = 0; i < data.length; i++) {
-        if (id === data[i].id) {
-          setVan(data[i]);
-          setLoading(false);
-        }
+      const data = await getVan(id);
+      try {
+        setVan(data);
+      } catch (err) {
+        setError(err);
+      } finally {
+        setLoading(false);
       }
     }
     loadVan();
   }, [id]);
+
+  if (error) {
+    return <h1>There was an error: {error.message}</h1>;
+  }
 
   return (
     <section>
