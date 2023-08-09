@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { loginUser } from "../api/loginUser.js";
+import { loginUser } from "../api/loginUser";
 
 export default function Login() {
   const [loginFormData, setLoginFormData] = useState({
@@ -13,17 +13,19 @@ export default function Login() {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const from = location.state?.from?.pathname || "/host";
+
   function handleSubmit(e) {
     e.preventDefault();
     setStatus("submitting");
     loginUser(loginFormData)
-      // eslint-disable-next-line no-unused-vars
       .then((data) => {
         setError(null);
         localStorage.setItem("loggedIn", true);
-        navigate("/host");
+        navigate(from, { replace: true });
       })
       .catch((err) => {
+        console.log(err);
         setError(err);
       })
       .finally(() => {
